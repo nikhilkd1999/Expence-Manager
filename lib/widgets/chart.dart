@@ -1,3 +1,4 @@
+import 'package:expence_manager/widgets/chart_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
@@ -38,27 +39,44 @@ class Chart extends StatelessWidget {
     );
   }
  
+  double get totalSpending
+  {
+    return groupedTransactionValues.fold(0.0, (sum ,item) 
+    {
+      return sum + item['amount'];
+    });
+  }
  
  
  
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      margin: EdgeInsets.all(10),
+      child: Card(
 
-      elevation: 6,
+        elevation: 6,
 
 
-      child: Row(
+        child: Padding(
+          padding:  EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-        children: groupedTransactionValues.map((data){
+            children: groupedTransactionValues.map((data){
 
-          return Text(  '${data['day']} : ${data['amount'].toString()}'  );
-          
+              // return Text(  '${data['day']} : ${data['amount'].toString()}'  );
+              return  Flexible(
+                  fit: FlexFit.tight,
+                  child: ChartBar(data['day'], data['amount'], totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending));
+              
 
-        }).toList(),
+            }).toList(),
+          ),
+        ),
+
+
       ),
-
-
     );
   }
 }
