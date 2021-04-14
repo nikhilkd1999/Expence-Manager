@@ -22,9 +22,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(title: 'Expence Manager',
     
     theme: ThemeData(
-      primarySwatch: Colors.green
-      ,
+      primarySwatch: Colors.green,
+
       accentColor: Colors.red,
+
+      errorColor: Colors.red,
 
       fontFamily: 'Quicksand',
       
@@ -122,6 +124,17 @@ void startAddNewTransaction(BuildContext ctx)
     }).toList();
   }
 
+  void _deleteTransaction(String id)
+  {
+    setState(() {
+          
+      _userTransactions.removeWhere((tx) {
+        return tx.id == id;
+      });
+        
+        });
+
+  }
 
 
 
@@ -161,7 +174,7 @@ void startAddNewTransaction(BuildContext ctx)
 
                       
                       // UserTransactions(),
-                      TransactionList(_userTransactions),
+                      TransactionList(_userTransactions,_deleteTransaction),
 
 
                       
