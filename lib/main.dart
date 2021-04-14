@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
           fontWeight: FontWeight.bold,
           fontSize: 18
         ),
+        button: TextStyle(color: Colors.white),
       ),
 
       appBarTheme: AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith(
@@ -82,9 +83,9 @@ final List _userTransactions = <Transaction> [
 
 
 
-  void _addNewTransaction(String txTitle, double txAmount){
+  void _addNewTransaction(String txTitle, double txAmount, DateTime chosenDate){
 
-    final newTx = Transaction(id: DateTime.now().toString(), title: txTitle, amount: txAmount, date: DateTime.now());
+    final newTx = Transaction(id: DateTime.now().toString(), title: txTitle, amount: txAmount, date: chosenDate);
 
     setState(() {
           _userTransactions.add(newTx);
