@@ -15,15 +15,20 @@ class TransactionList extends StatelessWidget {
     
     Container(
 
-      height: 490,
+      // height: MediaQuery.of(context).size.height * 0.6,
+      
+      
+      // padding: EdgeInsets.all(2),
+      // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black)),
 
       
 
       child: transactions.isEmpty ? 
       
       
-      
-        Column(
+      LayoutBuilder(builder: (context,constraints){
+
+        return Column(
 
           children: [
             
@@ -37,13 +42,17 @@ class TransactionList extends StatelessWidget {
 
           Container(
             
-            height: 300,
+            height: constraints.maxHeight * 0.6,
             
-            child: Image.asset('assets/images/waiting.png', fit: BoxFit.cover,)),
+            child: Image.asset('assets/images/waiting.png', fit: BoxFit.cover,),
+            ),
 
           ]
 
-        )
+        );
+
+      })
+        
 
 
 
@@ -74,66 +83,17 @@ class TransactionList extends StatelessWidget {
               subtitle: Text(DateFormat.yMMMd().format(transactions[index].date),),
 
               trailing: IconButton(icon: Icon(Icons.delete,color: Theme.of(context).errorColor,),
+              // trailing: IconButton(icon: Icon(Icons.delete),color: Colors.red,),
               
               onPressed: () => deleteTx(transactions[index].id),
               
               
               ),
-              // trailing: IconButton(icon: Icon(Icons.delete),color: Colors.red,),
               
               
               ),
           );
-          // Card(
-          //   elevation: 1,
-          //   child: Row(
-          //     children: [
-          //       Container(
-                  
-          //         margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-          //         decoration: BoxDecoration(
-          //           border: Border.all(
-          //             color: Theme.of(context).primaryColor,
-          //             width: 2,
-                      
-          //           ),
-                    
-          //           // boxShadow: [BoxShadow( color: Colors.grey , blurRadius: 2 ),],
-          //         ),
-          //         padding: EdgeInsets.all(10),
-          //         child: Text(
-          //           '₹ ${transactions[index].amount.toStringAsFixed(2)}',
-          //           style: TextStyle(
-          //               fontWeight: FontWeight.bold,
-          //               fontSize: 20,
-          //               color: Colors.purple),
-          //         ),
-          //       ),
-          //       Column(
-          //         crossAxisAlignment: CrossAxisAlignment.start,
-          //         children: [
-          //           Text(
-          //             transactions[index].title,
-          //             // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,
-                      
-          //             style: Theme.of(context).textTheme.title,
-                      
-                      
-          //             textAlign: TextAlign.left,
-          //           ),
-          //           Text(
-          //             DateFormat.yMMMd().format(transactions[index].date),
-          //             style: TextStyle(color: Colors.grey),
-          //             textAlign: TextAlign.left,
-          //           ),
-          //         ],
-          //       ),
-          //     ],
-          //   ),
-          // );
-
-
-
+          
         },
         itemCount: transactions.length,
         )
