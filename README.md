@@ -11,7 +11,6 @@ This is a **Expense manager** App made with **Flutter**. This app is very useful
 | ✔ |    date feature
 | ✔ |    helps in easy analysis of money flow.
 
-## To play the game download the **APK** above!
 
 
 ## Screenshots
